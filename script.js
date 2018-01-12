@@ -1,6 +1,4 @@
 
-var name = document.querySelector('.name');
-var surname = document.querySelector('.surname');
 
 function changeAllText(){
 	changeNameText('name');
@@ -9,6 +7,8 @@ function changeAllText(){
 	changeRaceText();
 	changeClassText();
 	changePersonalityText();
+	changeLikesText();
+	changeAlignText();
 }
 
 function changeNameText(id){
@@ -27,6 +27,12 @@ function changeClassText(){
 }
 function changePersonalityText(){
   document.getElementById("personality").innerHTML = generatePersonalityTraitsList();
+}
+function changeLikesText(){
+  document.getElementById("likes").innerHTML = getLikes();
+}
+function changeAlignText(){
+  document.getElementById("align").innerHTML = getAlign();
 }
 
 function createName(){
@@ -67,19 +73,38 @@ function getClass(){
 	return classes[Math.floor((Math.random() * classes.length) + 1)-1];
 }
 
-function getNoun(){
-	var nouns = ['cats', 'swords', 'elves', 'spiders', 'magic', 'slaves',
-	'dragons', 'royalty', 'knights', 'donkeys', 'ogres', 'orcs', 'humans',
-	'rocks', 'snow', 'rain', 'food', 'apples', 'baked goods', 'meat', 
-	'ale', 'cheese', 'wine', 'men', 'women', 'children'];
-	return nouns[Math.floor((Math.random() * nouns.length) + 1)-1];
+function getAlign(){
+	var align = "";
+	var randnum;
+	
+	randnum = Math.floor((Math.random() * 3) + 1);
+	if(randnum==1){
+		align+="lawful ";
+	} else if(randnum==2){
+		align+="neutral ";
+	} else {
+		align+="chaotic ";
+	}
+	
+	randnum = Math.floor((Math.random() * 3) + 1);
+	if(randnum==1){
+		align+="good";
+	} else if(randnum==2){
+		align+="neutral";
+	} else {
+		align+="evil";
+	}
+	
+	if(align=="neutral neutral"){
+		align = "true neutral";
+	}
+	
+	return align;
 }
+
 
 function generatePersonalityTraitsList(){
 	var personality = "";
-	
-	var poslist = ['smart', 'friendly', 'charismatic', 'muscular', 'brave', 'compassionate'];
-	var neglist = ['dumb', 'rude', 'repulsive', 'weak', 'cowardly', 'apathetic'];
 	
 	var traits = ['smart', 'dumb',
 					'friendly','rude',
@@ -100,18 +125,18 @@ function generatePersonalityTraitsList(){
 					'independent', 'uneasy',
 					'assertive', 'anxious',
 					'funny', 'serious',
-					'gently', 'rough',
+					'gentle', 'rough',
 					'outgoing', 'shy',
 					'tactical', 'spontaneous'];
 			
 	
-	var traitsidlist = makeTraitsIdList(traits.length/2);
+	var traitsidlist = makeTraitsIdList(traits.length/2, 5);
 	
 	for (i = 0; i < traitsidlist.length; i++) { 
 		if(Math.floor((Math.random() * 2) + 1)-1 ==1){
-			personality+=traits[traitsidlist[i]*2]+" ";
+			personality+=traits[traitsidlist[i]*2]+" "+"<br>";
 		}else {
-			personality+=traits[traitsidlist[i]*2+1]+" ";
+			personality+=traits[traitsidlist[i]*2+1]+" "+"<br>";
 		}
 	}
 	
@@ -119,10 +144,28 @@ function generatePersonalityTraitsList(){
 	
 }
 
-function makeTraitsIdList(maxrand){
+function getLikes(){
+	var likes = "";
+	
+	var nouns = ['cats', 'swords', 'elves', 'spiders', 'magic', 'slavery',
+	'dragons', 'royalty', 'knights', 'donkeys', 'ogres', 'orcs', 'humans',
+	'rocks', 'snow', 'rain', 'food', 'apples', 'baked goods', 'meat', 
+	'ale', 'cheese', 'wine', 'men', 'women', 'children', 'chicken', 'art', 'vegetables'];
+	
+	var idList = makeTraitsIdList(nouns.length, 8)
+	
+	likes+="Loves: " +nouns[idList[0]]+"<br>";
+	likes+="Likes: " +nouns[idList[1]]+" "+nouns[idList[2]]+" "+nouns[idList[3]]+"<br>";
+	likes+="Dislikes: " +nouns[idList[4]]+" "+nouns[idList[5]]+" "+nouns[idList[6]]+"<br>";
+	likes+="Fears: " +nouns[idList[7]]+"<br>";
+	
+	return likes;
+}
+
+function makeTraitsIdList(maxrand, num){
 	var idlist = [];
 	var id;
-	for (i = 0; i < 5; i++) { 
+	for (i = 0; i < num; i++) { 
 		do{
 			id = Math.floor((Math.random() * maxrand) + 1)-1;
 		}
