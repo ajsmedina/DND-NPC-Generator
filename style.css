@@ -1,0 +1,28 @@
+body {
+	background-color: azure;
+	width: 50%;
+	margin: auto;
+}
+
+table {
+	width: 100%;
+	margin: auto;
+}
+
+tr {
+	width: 100%;
+	margin: auto;
+}
+
+td {
+	width: 50%;
+	margin: auto;
+}
+
+#invent{
+	width: 100%;
+}
+
+button {
+	width: 100%;
+}

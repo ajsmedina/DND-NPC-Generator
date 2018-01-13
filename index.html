@@ -4,74 +4,126 @@
 
 <head>
 <title> NPC Generator </title>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
 	<script src="script.js">
 	</script>
 
+	<table>
+	
 		<h1> DND NPC Generator </h1>
-		<button onclick="changeAllText()"
-			<p>Generate All</p>
-		</button>
-		<br />
-		<br />
+		<tr>
+			<td>
+				<button onclick="changeAllText()"
+					<p>Generate All</p>
+				</button>
+			</td>
+		</tr>
 		
-		<button onclick="changeNameText('name')"
-			<p>Generate Name</p>
-		</button>
-		<div>
-		<p id="name">Billy</p>
-		</div>
+		<tr>
+			<td>
+				<button onclick="changeNameText('name')"
+					<p>Generate Name</p>
+				</button>
+				<div>
+				<p id="name">Billy</p>
+				</div>
+			</td>
 		
-		<button onclick="changeNameText('sur')"
-			<p>Generate Surname</p>
-		</button>
-		<div>
-		<p id="sur">Jean</p>
-		</div>
+			<td>
+				<button onclick="changeNameText('sur')"
+					<p>Generate Surname</p>
+				</button>
+				<div>
+				<p id="sur">Jean</p>
+				</div>
+			</td>
+		</tr>
 		
-		<button onclick="changeRaceText()"
-			<p>Generate Race</p>
-		</button>
-		<div>
-		<p id="race">Human</p>
-		</div>
+		<tr>
+			<td>
+				<button onclick="changeRaceText()"
+					<p>Generate Race</p>
+				</button>
+				<div>
+				<p id="race">Human</p>
+				</div>
+			</td>
+			
+			<td>
+				<button onclick="changeProfessionText()"
+					<p>Generate Profession</p>
+				</button>
+				<div>
+				<p id="prof">Performer</p>
+				</div>
+			</td>
+		</tr>
 		
-		<button onclick="changeProfessionText()"
-			<p>Generate Profession</p>
-		</button>
-		<div>
-		<p id="prof">Performer</p>
-		</div>
+		<tr>
+			<td>
+				<button onclick="changeClassText()"
+					<p>Generate Class</p>
+				</button>
+				<div>
+				<p id="class">No Class</p>
+				</div>
+			</td>
+			
+			<td>
+				<button onclick="changeAlignText()"
+					<p>Generate Alignment</p>
+				</button>
+				<div>
+				<p id="align">True Neutral</p>
+				</div>
+			</td>
+		</tr>
 		
-		<button onclick="changeClassText()"
-			<p>Generate Class</p>
-		</button>
-		<div>
-		<p id="class">No Class</p>
-		</div>
+		<tr>
+			<td>
+				<button onclick="changePersonalityText()"
+					<p>Generate Personality</p>
+				</button>
+				<div>
+				<p id="personality">No Personality<br><br><br><br><br></p>
+				</div>
+			</td>
+			
+			<td>
+				<button onclick="changeLikesText()"
+					<p>Generate Likes</p>
+				</button>
+				<div>
+				<p id="likes">No Likes<br><br><br><br><br></p>
+				</div>
+			</td>
+		</tr>
 		
-		<button onclick="changePersonalityText()"
-			<p>Generate Personality</p>
-		</button>
-		<div>
-		<p id="personality">No Personality</p>
-		</div>
 		
-		<button onclick="changeLikesText()"
-			<p>Generate Likes</p>
-		</button>
-		<div>
-		<p id="likes">No Likes</p>
-		</div>
-		
-		<button onclick="changeAlignText()"
-			<p>Generate Alignment</p>
-		</button>
-		<div>
-		<p id="align">True Neutral</p>
-		</div>
+		<tr>
+			<td>
+				<button onclick="changeInventoryText()"
+					<p>Generate Inventory</p>
+				</button>
+				<div>
+				<p id="bag">No Items<br><br><br><br><br></p>
+				</div>
+			</td>
+			
+			<td>
+				<button onclick="changeMoneyText()"
+					<p>Generate Gold</p>
+				</button>
+				<div>
+				<p id="money">No Money<br><br><br><br><br></p>
+				</div>
+			</td>
+		</tr>
+	</table>
 		
 </body>
 		

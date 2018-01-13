@@ -9,6 +9,8 @@ function changeAllText(){
 	changePersonalityText();
 	changeLikesText();
 	changeAlignText();
+	changeInventoryText();
+	changeMoneyText();
 }
 
 function changeNameText(id){
@@ -33,6 +35,12 @@ function changeLikesText(){
 }
 function changeAlignText(){
   document.getElementById("align").innerHTML = getAlign();
+}
+function changeInventoryText(){
+  document.getElementById("bag").innerHTML = getInventory();
+}
+function changeMoneyText(){
+  document.getElementById("money").innerHTML = getMoney();
 }
 
 function createName(){
@@ -127,7 +135,8 @@ function generatePersonalityTraitsList(){
 					'funny', 'serious',
 					'gentle', 'rough',
 					'outgoing', 'shy',
-					'tactical', 'spontaneous'];
+					'tactical', 'spontaneous',
+					'level-headed', 'hot-headed'];
 			
 	
 	var traitsidlist = makeTraitsIdList(traits.length/2, 5);
@@ -145,12 +154,13 @@ function generatePersonalityTraitsList(){
 }
 
 function getLikes(){
-	var likes = "";
+	var likes = "<br>";
 	
 	var nouns = ['cats', 'swords', 'elves', 'spiders', 'magic', 'slavery',
 	'dragons', 'royalty', 'knights', 'donkeys', 'ogres', 'orcs', 'humans',
 	'rocks', 'snow', 'rain', 'food', 'apples', 'baked goods', 'meat', 
-	'ale', 'cheese', 'wine', 'men', 'women', 'children', 'chicken', 'art', 'vegetables'];
+	'ale', 'cheese', 'wine', 'men', 'women', 'children', 'chicken', 'art', 'vegetables', 'fire', 'fish',
+	'religion'];
 	
 	var idList = makeTraitsIdList(nouns.length, 8)
 	
@@ -160,6 +170,45 @@ function getLikes(){
 	likes+="Fears: " +nouns[idList[7]]+"<br>";
 	
 	return likes;
+}
+
+function getInventory(){
+	var inventory = "";
+	var count;
+	
+	var items = ['rope','sword','lesser healing potion', 'ration', 'apple', 'bread loaf', 'dagger',
+	'amulet', 'book', 'candle', 'crowbar', 'bow', 'crossbow', 'arrow', 'dice set', 'flask',
+	'hammer', 'pen', 'jewel', 'torch', 'vial', 'rock', 'trinket'];
+	var idList = makeTraitsIdList(items.length, Math.floor((Math.random() * 5) + 1))
+	
+	for (i = 0; i < idList.length; i++) { 
+		count = Math.floor((Math.random() * 5) + 1);
+		inventory += count+" "+items[idList[i]];
+		if(count>1){
+			if(inventory[inventory.length-1]=="h"){
+				inventory+="e";
+			}
+			inventory+="s";
+		}
+		inventory+="<br>";
+	}
+	
+	for (i = 0; i < 5-idList.length; i++) { 
+		inventory+="<br>";
+	}
+	
+	return inventory;
+}
+
+function getMoney(){
+	var money="";
+	
+	money+="GP: "+Math.floor((Math.random() * 20))+"<br>";
+	money+="SP: "+Math.floor((Math.random() * 20))+"<br>";
+	money+="CP: "+Math.floor((Math.random() * 20))+"<br>";
+	money+="<br><br>";
+	
+	return money;
 }
 
 function makeTraitsIdList(maxrand, num){
@@ -174,26 +223,3 @@ function makeTraitsIdList(maxrand, num){
 	}
 	return idlist;
 }
-
-function getPersonalityTrait(){
-	var traits = ['cats', 'swords', 'elves', 'spiders', 'magic', 'slaves',
-	'dragons', 'royalty', 'knights', 'donkeys', 'ogres', 'orcs', 'humans',
-	'rocks', 'snow', 'rain', 'food', 'apples', 'baked goods', 'meat', 
-	'ale', 'cheese', 'wine', 'men', 'women', 'children'];
-	return traits[Math.floor((Math.random() * nouns.length) + 1)-1];
-	
-}
-
-function getPosTrait(){
-	
-	var trai
-	return traits[Math.floor((Math.random() * nouns.length) + 1)-1];
-}
-
-
-var buttons = document.querySelectorAll('button');
-
-for (var i = 0; i < buttons.length ; i++) {
-  buttons[i].addEventListener('click', changeNameText);
-}
-
