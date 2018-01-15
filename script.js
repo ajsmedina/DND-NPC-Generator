@@ -43,6 +43,28 @@ function changeMoneyText(){
   document.getElementById("money").innerHTML = getMoney();
 }
 
+function copyCharacterText(){
+  var copyText = document.getElementById("copyBox");
+  var txt;
+  copyText.value = "";
+  copyText.value += "Name: "+document.getElementById("name").innerHTML+" "+document.getElementById("sur").innerHTML;
+  copyText.value += "\nRace: "+document.getElementById("race").innerHTML;
+  copyText.value += "\nClass: "+document.getElementById("class").innerHTML;
+  copyText.value += "\nProfession: "+document.getElementById("prof").innerHTML;
+  copyText.value += "\n\nPersonality:\n"+document.getElementById("personality").innerHTML;
+  copyText.value += document.getElementById("likes").innerHTML;
+  copyText.value += "\nAlignment: "+document.getElementById("align").innerHTML;
+  copyText.value += "\n\nInventory:\n"+document.getElementById("bag").innerHTML;
+  copyText.value += "\n\nMoney:\n"+document.getElementById("money").innerHTML;
+  txt = copyText.value;
+  copyText.value=txt.replace(/<br>/g,"\n");
+  copyText.style.visibility = "visible";
+  copyText.select();
+  document.execCommand("copy");
+  alert("Copied character to clipboard!");
+  copyText.style.visibility = "hidden";
+}
+
 function createName(){
 	var name = '';
 	

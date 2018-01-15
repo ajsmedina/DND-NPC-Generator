@@ -21,6 +21,11 @@
 					<p>Generate All</p>
 				</button>
 			</td>
+			<td>
+				<button onclick="copyCharacterText()"
+					<p>Copy Character to Clipboard</p>
+				</button>
+			</td>
 		</tr>
 		
 		<tr>
@@ -29,7 +34,7 @@
 					<p>Generate Name</p>
 				</button>
 				<div>
-				<p id="name">Billy</p>
+				<p id="name">Name</p>
 				</div>
 			</td>
 		
@@ -38,7 +43,7 @@
 					<p>Generate Surname</p>
 				</button>
 				<div>
-				<p id="sur">Jean</p>
+				<p id="sur">Surname</p>
 				</div>
 			</td>
 		</tr>
@@ -49,7 +54,7 @@
 					<p>Generate Race</p>
 				</button>
 				<div>
-				<p id="race">Human</p>
+				<p id="race">Race</p>
 				</div>
 			</td>
 			
@@ -58,7 +63,7 @@
 					<p>Generate Profession</p>
 				</button>
 				<div>
-				<p id="prof">Performer</p>
+				<p id="prof">Profession</p>
 				</div>
 			</td>
 		</tr>
@@ -69,7 +74,7 @@
 					<p>Generate Class</p>
 				</button>
 				<div>
-				<p id="class">No Class</p>
+				<p id="class">Class</p>
 				</div>
 			</td>
 			
@@ -78,7 +83,7 @@
 					<p>Generate Alignment</p>
 				</button>
 				<div>
-				<p id="align">True Neutral</p>
+				<p id="align">Alignment</p>
 				</div>
 			</td>
 		</tr>
@@ -89,7 +94,7 @@
 					<p>Generate Personality</p>
 				</button>
 				<div>
-				<p id="personality">No Personality<br><br><br><br><br></p>
+				<p id="personality">Personality<br><br><br><br><br></p>
 				</div>
 			</td>
 			
@@ -98,7 +103,7 @@
 					<p>Generate Likes</p>
 				</button>
 				<div>
-				<p id="likes">No Likes<br><br><br><br><br></p>
+				<p id="likes">Likes<br><br><br><br><br></p>
 				</div>
 			</td>
 		</tr>
@@ -110,7 +115,7 @@
 					<p>Generate Inventory</p>
 				</button>
 				<div>
-				<p id="bag">No Items<br><br><br><br><br></p>
+				<p id="bag">Items<br><br><br><br><br></p>
 				</div>
 			</td>
 			
@@ -119,11 +124,13 @@
 					<p>Generate Gold</p>
 				</button>
 				<div>
-				<p id="money">No Money<br><br><br><br><br></p>
+				<p id="money">Money<br><br><br><br><br></p>
 				</div>
 			</td>
 		</tr>
+		
 	</table>
+			<textarea readonly id="copyBox"> NPC </textarea>
 		
 </body>
 		
