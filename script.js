@@ -1,5 +1,8 @@
 
 
+/**
+ * Changes text for all properties of the NPC
+ */
 function changeAllText(){
 	changeNameText('name');
 	changeNameText('sur');
@@ -13,37 +16,84 @@ function changeAllText(){
 	changeMoneyText();
 }
 
+/**
+ * Changes text for character's name.
+ * id: which name to change ('name' for first name or 'sur' for surname).
+ */
 function changeNameText(id){
   document.getElementById(id).innerHTML = createName();
+  generateCharacterText();
 }
+
+/**
+ * Changes text of the character's profession.
+ */
 function changeProfessionText(){
   document.getElementById("prof").innerHTML = getProfession();
+  generateCharacterText();
 }
 
+/**
+ * Changes text for the character's race.
+ */
 function changeRaceText(){
   document.getElementById("race").innerHTML = getRace();
+  generateCharacterText();
 }
 
+/**
+ * Changes text for the character's class.
+ */
 function changeClassText(){
   document.getElementById("class").innerHTML = getClass();
-}
-function changePersonalityText(){
-  document.getElementById("personality").innerHTML = generatePersonalityTraitsList();
-}
-function changeLikesText(){
-  document.getElementById("likes").innerHTML = getLikes();
-}
-function changeAlignText(){
-  document.getElementById("align").innerHTML = getAlign();
-}
-function changeInventoryText(){
-  document.getElementById("bag").innerHTML = getInventory();
-}
-function changeMoneyText(){
-  document.getElementById("money").innerHTML = getMoney();
+  generateCharacterText();
 }
 
-function copyCharacterText(){
+/**
+ * Changes text for the character's personality.
+ */
+function changePersonalityText(){
+  document.getElementById("personality").innerHTML = generatePersonalityTraitsList();
+  generateCharacterText();
+}
+
+/**
+ * Changes text for the character's likes and dislikes.
+ */
+function changeLikesText(){
+  document.getElementById("likes").innerHTML = getLikes();
+  generateCharacterText();
+}
+
+/**
+ * Changes text for the character's alignment.
+ */
+function changeAlignText(){
+  document.getElementById("align").innerHTML = getAlign();
+  generateCharacterText();
+}
+
+/**
+ * Changes text for the character's inventory.
+ */
+function changeInventoryText(){
+  document.getElementById("bag").innerHTML = getInventory();
+  generateCharacterText();
+}
+
+/**
+ * Changes text for the character's money.
+ */
+function changeMoneyText(){
+  document.getElementById("money").innerHTML = getMoney();
+  generateCharacterText();
+}
+
+/**
+ * Writes character information into the textarea.
+ * This textarea is used for exporting the information.
+ */
+function generateCharacterText(){
   var copyText = document.getElementById("copyBox");
   var txt;
   copyText.value = "";
@@ -58,13 +108,25 @@ function copyCharacterText(){
   copyText.value += "\n\nMoney:\n"+document.getElementById("money").innerHTML;
   txt = copyText.value;
   copyText.value=txt.replace(/<br>/g,"\n");
-  copyText.style.visibility = "visible";
+}
+
+
+/**
+ * Copies the character information to the user's clipboard for exporting.
+ */
+function copyCharacterText(){
+  var copyText = document.getElementById("copyBox");
+  generateCharacterText();
   copyText.select();
   document.execCommand("copy");
   alert("Copied character to clipboard!");
-  copyText.style.visibility = "hidden";
 }
 
+
+/**
+ * Generates a name for the character by randomly combining 2-4 name pieces.
+ * @return: string of character's name.
+ */
 function createName(){
 	var name = '';
 	
@@ -75,6 +137,10 @@ function createName(){
 	return name;
 }
 
+/**
+ * Randomly gets a name piece from the list.
+ * @return: string of a name piece.
+ */
 function getNamePiece(){
 	var pieces = ['el', 'li', 'tat', 'io', 'on', 'fa', 'ill', 'eg', 'aer', 'shi', 'lys', 'and',
 	'whi', 'dus', 'ney', 'bal', 'kri', 'ten', 'dev', 'ep', 'tin', 'ton', 'ri', 'mynn', 'ben', 'la', 'sam',
@@ -84,6 +150,10 @@ function getNamePiece(){
 	return pieces[Math.floor((Math.random() * pieces.length) + 1)-1];
 }
 
+/**
+ * Randomly gets a profession from the list.
+ * @return: string of character's profession
+ */
 function getProfession(){
 	var professions = ['escort', 'servant', 'noble', 'landlord', 'inkeep', 'bartender', 'merchant', 'mercenary',
 	'craftsman', 'comedian', 'guard', 'soldier', 'urchin', 'outlaw', 'performer',
@@ -91,18 +161,31 @@ function getProfession(){
 	return professions[Math.floor((Math.random() * professions.length) + 1)-1];
 }
 
+/**
+ * Randomly gets a race from the list.
+ * @return: string of character's race
+ */
 function getRace(){
 	var races = ['human', 'elf', 'half-elf', 'drow', 'half-orc', 'tiefling', 'gnome',
 	'dwarf', 'dragonborn', 'halfling'];
 	return races[Math.floor((Math.random() * races.length) + 1)-1];
 }
 
+/**
+ * Randomly gets a class from the list.
+ * @return: string of character's class
+ */
 function getClass(){
 	var classes = ['barbarian', 'monk', 'fighter', 'paladin', 'rogue', 'ranger',
 	'bard', 'wizard', 'warlock', 'sorcerer', 'cleric', 'druid'];
 	return classes[Math.floor((Math.random() * classes.length) + 1)-1];
 }
 
+
+/**
+ * Randomly generates an alignment based on the DND alignment chart.
+ * @return: string of character's alignment
+ */
 function getAlign(){
 	var align = "";
 	var randnum;
@@ -125,6 +208,7 @@ function getAlign(){
 		align+="evil";
 	}
 	
+	//"neutral neutral" is commonly called "true neutral".
 	if(align=="neutral neutral"){
 		align = "true neutral";
 	}
@@ -132,7 +216,11 @@ function getAlign(){
 	return align;
 }
 
-
+/**
+ * Randomly generates 5 personality traits for the character.
+ * Traits are grouped into positive/negative pairs to avoid a contradictory personality.
+ * @return: string of character's personality traits
+ */
 function generatePersonalityTraitsList(){
 	var personality = "";
 	
@@ -161,9 +249,13 @@ function generatePersonalityTraitsList(){
 					'level-headed', 'hot-headed'];
 			
 	
+	//Generates list of traits. The length is cut in half because
+	//Traits are grouped into pairs. This chooses which pair.
 	var traitsidlist = makeTraitsIdList(traits.length/2, 5);
 	
 	for (i = 0; i < traitsidlist.length; i++) { 
+		//Randomly select either the positive trait of the pair (+0)
+		//or the negative trait (+1)
 		if(Math.floor((Math.random() * 2) + 1)-1 ==1){
 			personality+=traits[traitsidlist[i]*2]+" "+"<br>";
 		}else {
@@ -175,6 +267,11 @@ function generatePersonalityTraitsList(){
 	
 }
 
+/**
+ * Randomly generates likes and dislikes for a character by 
+ * choosing random items from the list.
+ * @return: string of character's likes and dislikes.
+ */
 function getLikes(){
 	var likes = "<br>";
 	
@@ -194,18 +291,23 @@ function getLikes(){
 	return likes;
 }
 
+/**
+ * Generate an inventory for the character ranging from 1-5 items.
+ * @return: string containing character's inventory.
+ */
 function getInventory(){
 	var inventory = "";
 	var count;
 	
 	var items = ['rope','sword','lesser healing potion', 'ration', 'apple', 'bread loaf', 'dagger',
 	'amulet', 'book', 'candle', 'crowbar', 'bow', 'crossbow', 'arrow', 'dice set', 'flask',
-	'hammer', 'pen', 'jewel', 'torch', 'vial', 'rock', 'trinket'];
+	'hammer', 'pen', 'jewel', 'torch', 'vial', 'rock', 'trinket', 'staff'];
 	var idList = makeTraitsIdList(items.length, Math.floor((Math.random() * 5) + 1))
 	
 	for (i = 0; i < idList.length; i++) { 
 		count = Math.floor((Math.random() * 5) + 1);
 		inventory += count+" "+items[idList[i]];
+		
 		if(count>1){
 			if(inventory[inventory.length-1]=="h"){
 				inventory+="e";
@@ -215,6 +317,7 @@ function getInventory(){
 		inventory+="<br>";
 	}
 	
+	//Fill in line breaks for formatting purposes
 	for (i = 0; i < 5-idList.length; i++) { 
 		inventory+="<br>";
 	}
@@ -222,17 +325,30 @@ function getInventory(){
 	return inventory;
 }
 
+/**
+ * Generates character's money in terms of typical DND currency.
+ * Money ranges from 0 to 20 of each currency
+ * @return: string containing character's money information.
+ */
 function getMoney(){
 	var money="";
 	
 	money+="GP: "+Math.floor((Math.random() * 20))+"<br>";
 	money+="SP: "+Math.floor((Math.random() * 20))+"<br>";
 	money+="CP: "+Math.floor((Math.random() * 20))+"<br>";
+	
+	//Line breaks for formatting
 	money+="<br><br>";
 	
 	return money;
 }
 
+/**
+ * Generates an array of unique numbers to prevent repeats in personality/inventory.
+ * maxrand: the greatest possible index value.
+ * num: the amount of values to generate.
+ * @return: an array of unique index values.
+ */
 function makeTraitsIdList(maxrand, num){
 	var idlist = [];
 	var id;
